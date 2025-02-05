@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: springGatewayExample
+  cloud:
+    gateway:
+            routes:
+              - id: searchEngine
+                uri: lb://searchEngine
+                predicates:
+                  - Path=/test/**
+              - id: OrderService
+                uri: lb://OrderService
+                predicates:
+                  - Path=/oders/**
+
+eureka:
+  client:
+    register-with-eureka: true
+  service-url: http://localhost:8761/eureka
+
+server:
+  port: 8082
+
